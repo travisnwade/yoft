@@ -50,7 +50,7 @@ It is recommended to deploy this application to a standalone dedicated server as
 Download the setup installation script and make it executible. The script contains several arguments that can help with the site management.
 
 ```
-wget "https://yoft.org/feeling-tracker/setup_feeling_tracker.sh"
+wget "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/setup_feeling_tracker.sh"
 chmod +x setup_feeling_tracker.sh
 ./setup_feeling_tracker.sh
 ```
