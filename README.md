@@ -7,6 +7,13 @@
 - [Features](#features)
 - [File Structure](#file-structure)
 - [Installation](#installation)
+    - [Step 1: Download and Prepare Files](#step-1-download-and-prepare-necessary-installation-files)
+    - [Step 2: Install the webserver and packages](#step-2-install-the-webserver-and-needed-dependancy-packages)
+    - [Step 3: Update Nginx host conf file](#step-3-update-your-nginx-conf-file)
+    - [Step 4: Verify firewall rules](#step-4-ensure-firewall-rules-allow-for-80-and-443)
+    - [Step 5: Enable SSL](#step-5-enable-ssl)
+    - [Step 6: Test the website](#step-6-test-your-website)
+
 
 ## Overview
 The **Feeling Tracker** is a simple web application that allows users to document and reflect on their emotions by selecting from predefined emotions and writing down some notes regarding the feeling they had. This application also maintains a history of submissions, allowing users to review their past entries.
