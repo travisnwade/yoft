@@ -1,0 +1,308 @@
+/* Overall body styling */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 20px;
+    text-align: center;
+    background: url('../media/feeling-bg.jpg') no-repeat center center fixed; /* Background image with fixed positioning */
+    background-size: cover; /* Ensure the image covers the entire screen */
+    color: #e0e0e0;
+    padding-bottom: 20px;
+}
+
+/* Style for H1 and H2 */
+h1, h2 {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 2.5rem;
+    color: #00adb5; /* Neon cyan color for the headings */
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7); /* Glowing text effect */
+}
+
+/* Specific margin for H2 */
+h2 {
+    margin-top: 50px; /* Adds a comfortable margin above the H2 heading */
+}
+
+/* Container for input and buttons, and submission history */
+.input-container, .submission-history {
+    max-width: 700px; /* Restricts the container width */
+    margin: 0 auto; /* Centers the container */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); /* Glowing box shadow */
+    position: relative;
+    top: 20px;
+}
+
+/* Text area styling */
+textarea {
+    font-family: 'Poppins', Arial, sans-serif;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    resize: vertical;
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 1rem;
+    color: #e0e0e0;
+    background: #222831;
+    border: 2px solid #00adb5;
+    border-radius: 5px;
+}
+
+/* Emotion buttons grid layout */
+.emotion-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns for the buttons */
+    gap: 10px; /* Spacing between buttons */
+    margin: 20px 0;
+}
+
+/* Emotion button styling */
+.emotion-buttons button {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 2rem;
+    padding: 20px;
+    cursor: pointer;
+    border: 2px solid transparent; /* Default transparent border */
+    border-radius: 5px;
+    background-color: transparent; /* No background initially */
+    color: white;
+    width: 100%;
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transitions for color changes */
+}
+
+/* Submit button styling */
+#submit-button {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 2rem;
+    padding: 20px;
+    cursor: pointer;
+    border: 2px solid #00adb5; /* Border color matching the emotion buttons */
+    border-radius: 5px;
+    background-color: transparent; /* No background initially */
+    color: #00adb5; /* Text color matching the border */
+    width: 100%;
+    text-transform: uppercase; /* Uppercase text for submit button */
+    transition: color 0.3s, text-shadow 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
+}
+
+/* Hover effect for submit button */
+#submit-button:hover {
+    /* Subtle inner glow effect for the button */
+    box-shadow: inset 0 0 15px rgba(0, 173, 181, 0.8); /* Inner glow effect */
+    color: #00adb5; /* Text color remains consistent */
+}
+
+/* Specific emotion button colors */
+button.anger {
+    border-color: #ff4c4c; /* Neon Red border */
+}
+
+button.fear {
+    border-color: #ffa500; /* Neon Orange border */
+}
+
+button.sad {
+    border-color: #4c4cff; /* Neon Blue border */
+}
+
+button.happy {
+    border-color: #4cff4c; /* Neon Green border */
+}
+
+button.tired {
+    border-color: #c900f1; /* Neon Purple border */
+}
+
+button.meh {
+    border-color: #5c5c5c; /* Gray border */
+}
+
+/* Button background fills when selected */
+button.anger.selected {
+    background-color: #ff4c4c; /* Fill with Neon Red */
+    color: #000; /* Black text for contrast */
+}
+
+button.fear.selected {
+    background-color: #ffa500; /* Fill with Neon Orange */
+    color: #000; /* Black text for contrast */
+}
+
+button.sad.selected {
+    background-color: #4c4cff; /* Fill with Neon Blue */
+    color: #000; /* Black text for contrast */
+}
+
+button.happy.selected {
+    background-color: #4cff4c; /* Fill with Neon Green */
+    color: #000; /* Black text for contrast */
+}
+
+button.tired.selected {
+    background-color: #c900f1; /* Fill with Neon Purple */
+    color: #000; /* Black text for contrast */
+}
+
+button.meh.selected {
+    background-color: #5c5c5c; /* Fill with Gray */
+    color: #000; /* Black text for contrast */
+}
+
+/* Submission history grid layout */
+.submission-history {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid columns */
+    grid-auto-flow: dense; /* Fill gaps in the grid */
+    grid-gap: 15px; /* Spacing between grid items */
+    margin-bottom: 20px; /* Space below the submission history */
+}
+
+/* Individual entry styling in submission history */
+.submission-history .entry {
+    border: 1px solid #00adb5;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: left;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    break-inside: avoid; /* Prevents breaking within a grid column */
+    overflow-wrap: break-word; /* Handle long words */
+    word-wrap: break-word; /* Older support for word wrapping */
+    word-break: break-word; /* Break lines within words for better wrapping */
+    hyphens: auto; /* Automatically hyphenate where possible */
+}
+
+/* Timestamp and emotion styling within an entry */
+.submission-history .entry .timestamp,
+.submission-history .entry .emotion {
+    font-size: 1rem;
+    color: #00adb5; /* Neon cyan color for timestamps and emotion labels */
+    text-align: left;
+}
+
+/* Additional margin for emotion label */
+.submission-history .entry .emotion {
+    margin-top: 10px;
+}
+
+/* Emotion text color matches corresponding button */
+.submission-history .entry .emotion.anger {
+    color: #ff4c4c; /* Neon Red */
+}
+
+.submission-history .entry .emotion.fear {
+    color: #ffa500; /* Neon Orange */
+}
+
+.submission-history .entry .emotion.sad {
+    color: #4c4cff; /* Neon Blue */
+}
+
+.submission-history .entry .emotion.happy {
+    color: #4cff4c; /* Neon Green */
+}
+
+.submission-history .entry .emotion.tired {
+    color: #c900f1; /* Neon Purple */
+}
+
+.submission-history .entry .emotion.meh {
+    color: #5c5c5c; /* Gray */
+}
+
+/* Text content within an entry */
+.submission-history .entry .text {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    text-align: left;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 700px) {
+    .input-container, .submission-history {
+        max-width: 100%; /* Full width on small screens */
+        padding: 10px;
+    }
+
+    .emotion-buttons {
+        grid-template-columns: repeat(2, 1fr); /* Two columns layout on small screens */
+    }
+
+    .submission-history {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid for smaller screens */
+    }
+
+    .submission-history .entry {
+        font-size: 1rem; /* Slightly reduce font size on small screens */
+        padding: 8px; /* Adjust padding for smaller screens */
+    }
+
+    .submission-history .entry .timestamp,
+    .submission-history .entry .emotion,
+    .submission-history .entry .text {
+        font-size: 1rem; /* Ensure text remains readable on small screens */
+    }
+}
+
+/* Character count display styling */
+#char-count {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Hover effect to show text instead of icon on emotion buttons */
+.emotion-buttons button .text {
+    display: none;
+}
+
+.emotion-buttons button:hover .text {
+    display: inline;
+}
+
+.emotion-buttons button:hover i {
+    display: none;
+}
+
+/* Mobile-specific styling for emotion buttons */
+@media (max-width: 700px) {
+    .emotion-buttons button .text {
+        display: inline;
+    }
+
+    .emotion-buttons button i {
+        display: none;
+    }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a2e; /* Dark background for the scrollbar track */
+    border-radius: 10px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #00adb5, #c900f1); /* Gradient for the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners */
+    border: 2px solid #1a1a2e; /* Border around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #00adb5, #ff4c4c); /* Change color on hover */
+}
+
+/* Scrollbar styling for Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #00adb5 #1a1a2e; /* Thumb color and track color */
+}

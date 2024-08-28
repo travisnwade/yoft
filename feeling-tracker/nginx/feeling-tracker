@@ -1,0 +1,24 @@
+server {
+    listen 80;
+    server_name localhost;
+    # For your own domain, change localhost above to your domain.
+
+    root /var/www/html/feeling-tracker;
+    index index.php index.html index.htm;
+
+    # Basic Authentication
+    auth_basic "Restricted Access";
+    auth_basic_user_file /etc/nginx/.htpasswd;    
+
+    location / {
+    try_files $uri $uri/index.html;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+    }
+
+    access_log /var/log/nginx/feeling-tracker.access.log;
+    error_log /var/log/nginx/feeling-tracker.error.log;
+}
