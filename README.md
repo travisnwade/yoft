@@ -2,6 +2,12 @@
 
 ![Feeling Tracker Screenshot](repo-srcs/yoft_screenshot.jpg)
 
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [File Structure](#file-structure)
+- [Installation](#installation)
+
 ## Overview
 The **Feeling Tracker** is a simple web application that allows users to document and reflect on their emotions by selecting from predefined emotions and writing down some notes regarding the feeling they had. This application also maintains a history of submissions, allowing users to review their past entries.
 
@@ -139,6 +145,3 @@ sudo certbot --nginx -d YOURDOMAIN --agree-tos --no-eff-email -m YOU@YOURDOMAIN.
 
 ### Step 6: Test your website
 If you visit your newly deployed feeling-tracker web app, you should first be presented with a login prompt. Once you login, you should see the main interface like the screenshot at the top of this README. Test that you can input some notes along with a mood. You should see a history below the form to reflect on at later dates.
-
-## License
-This project is open-source and available under the [MIT License](LICENSE).
