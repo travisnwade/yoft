@@ -25,7 +25,7 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
 # Download the template Nginx conf
 echo "Getting baseline nginx config for new host..."
-wget "https://files.twade.io/software/feeling-tracker/feeling-tracker" -O /tmp/feeling-tracker
+wget "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/nginx/feeling-tracker" -O /tmp/feeling-tracker
 mv /tmp/feeling-tracker /etc/nginx/sites-available/feeling-tracker
 
 # Configure Nginx to use PHP Processor
@@ -44,7 +44,7 @@ sudo chown -R $USER:$USER /var/www/html/feeling-tracker
 
 # Download and unzip the project files directly into /var/www/html/feeling-tracker
 echo "Downloading and unzipping the project files..."
-wget https://files.twade.io/software/feeling-tracker/feeling-tracker.zip -O /tmp/feeling-tracker.zip
+wget "https://github.com/travisnwade/yoft/raw/main/feeling-tracker/webroot/zip/feeling-tracker.zip" -O /tmp/feeling-tracker.zip
 unzip /tmp/feeling-tracker.zip -d /tmp/feeling-tracker
 cp -a /tmp/feeling-tracker/. /var/www/html/feeling-tracker/
 

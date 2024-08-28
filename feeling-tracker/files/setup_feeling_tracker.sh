@@ -7,8 +7,8 @@ WWW_DIR="/var/www/html/feeling-tracker"
 ZIP_FILE="$TARGET_DIR/feeling-tracker.zip"
 INSTALL_SCRIPT="$TARGET_DIR/install_web_server_nginx.sh"
 UNINSTALL_SCRIPT="$TARGET_DIR/uninstall_web_server_nginx.sh"
-INSTALL_SCRIPT_URL="https://files.twade.io/software/feeling-tracker/install_web_server_nginx.sh"
-UNINSTALL_SCRIPT_URL="https://files.twade.io/software/feeling-tracker/uninstall_web_server_nginx.sh"
+INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/install_web_server_nginx.sh"
+UNINSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/uninstall_web_server_nginx.sh"
 
 # Function to display help
 show_help() {
@@ -39,11 +39,10 @@ download_files() {
 
     # Define URLs for the files to be downloaded
     FILES=(
-        "https://files.twade.io/software/feeling-tracker/feeling-tracker"
-        "https://files.twade.io/software/feeling-tracker/feeling-tracker.zip"
-        "https://files.twade.io/software/feeling-tracker/install_web_server_nginx.sh"
-        "https://files.twade.io/software/feeling-tracker/refresh_website.sh"
-        "https://files.twade.io/software/feeling-tracker/uninstall_web_server_nginx.sh"
+        "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/nginx/feeling-tracker"
+        "https://github.com/travisnwade/yoft/raw/main/feeling-tracker/webroot/zip/feeling-tracker.zip"
+        "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/install_web_server_nginx.sh"
+        "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/uninstall_web_server_nginx.sh"
     )
 
     # Download each file into the target directory, overwriting any existing files
