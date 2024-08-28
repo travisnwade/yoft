@@ -3,6 +3,7 @@
 ![Feeling Tracker Screenshot](repo-srcs/yoft_screenshot.jpg)
 
 ## Table of Contents
+- [Demo](#demo)
 - [Overview](#overview)
 - [Features](#features)
 - [File Structure](#file-structure)
@@ -14,6 +15,14 @@
     - [Step 5: Enable SSL](#step-5-enable-ssl)
     - [Step 6: Test the website](#step-6-test-your-website)
 
+## Demo
+A demonstration of the feeling tracker can be found here: [demo.yoft.org](https://demo.yoft.org)
+
+Use `demo` / `demo` for the username and password to access the site.
+
+The historical entries are cleared every **15 minutes** automatically.
+
+**Please do not put any personal information in the demo site!**
 
 ## Overview
 The **Feeling Tracker** is a simple web application that allows users to document and reflect on their emotions by selecting from predefined emotions and writing down some notes regarding the feeling they had. This application also maintains a history of submissions, allowing users to review their past entries.
