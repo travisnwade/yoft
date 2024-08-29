@@ -94,6 +94,10 @@ When the script finishes, you should have a directory like so:
 
 --uninstall             # This uninstalls everything that the script installed. This will uninstall NGINX, PHP, SQLite, etc.
 
+--backup-db             # Backs up the submissions.db file to /opt/feeling-tracker/db_backups
+
+--restore-db            # Restores the submissions.db file.
+
 --help                  # A help file for reminding you what these do.
 ```
 

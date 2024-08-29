@@ -9,6 +9,8 @@ INSTALL_SCRIPT="$TARGET_DIR/install_web_server_nginx.sh"
 UNINSTALL_SCRIPT="$TARGET_DIR/uninstall_web_server_nginx.sh"
 INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/install_web_server_nginx.sh"
 UNINSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/uninstall_web_server_nginx.sh"
+DB_FILE="$WWW_DIR/php/submissions.db"
+BACKUP_DIR="/opt/feeling-tracker/db_backups"
 
 # Function to display help
 show_help() {
@@ -24,6 +26,10 @@ show_help() {
     echo "                        will be downloaded if it is not present in /opt/feeling-tracker/."
     echo "  --uninstall           Run the uninstall script to remove the web server. The script"
     echo "                        will be downloaded if it is not present in /opt/feeling-tracker/."
+    echo "  --backup-db           Backup the submissions.db file to /opt/feeling-tracker/db_backups/"
+    echo "                        with a timestamped filename."
+    echo "  --restore-db          Restore the submissions.db file from a specified backup in"
+    echo "                        /opt/feeling-tracker/db_backups/."
     echo "  --help                Display this help message and exit."
     echo
     echo "If no option is provided, the script will perform the --download-only argument."
@@ -61,34 +67,60 @@ download_files() {
     echo "-------------------------------------------"
 }
 
-# Function to refresh the webroot
 refresh_webroot() {
 
-    # Clean or create the webroot directory
+    # Step 1: Backup the database before refreshing the webroot
+    echo "Backing up the database before refreshing the webroot..."
+    backup_db
+
+    # Step 2: Clean or create the webroot directory
     echo "Creating or cleaning webroot directory at $WEBROOT_DIR..."
     sudo rm -rf $WEBROOT_DIR  # Remove the directory if it exists
     sudo mkdir -p $WEBROOT_DIR  # Create the directory
 
-    # Unzip the .zip file to the webroot directory
+    # Step 3: Unzip the .zip file to the webroot directory
     echo "Unzipping $ZIP_FILE to $WEBROOT_DIR..."
     sudo unzip -o -d $WEBROOT_DIR $ZIP_FILE  # Overwrite files if they exist
 
-    # Copy the contents of the refreshed webroot to the www directory
+    # Step 4: Copy the contents of the refreshed webroot to the www directory
     echo "Copying contents of $WEBROOT_DIR to $WWW_DIR..."
     sudo cp -a $WEBROOT_DIR/. $WWW_DIR/
 
-    # Set proper permissions for the www directory
+    # Step 5: Set proper permissions for the www directory
     echo "Setting permissions for $WWW_DIR..."
     sudo chown -R www-data:www-data $WWW_DIR
     sudo chmod -R 755 $WWW_DIR
 
-    # Restart Nginx
+    # Step 6: Restart Nginx
     echo "Restarting Nginx..."
     sudo systemctl restart nginx
 
     echo "-------------------------------------------"
     echo "Webroot refresh complete."
     echo "-------------------------------------------"
+
+    # Step 7: Restore the latest database backup after refreshing the webroot
+    echo "Restoring the latest database backup..."
+    restore_db_latest
+}
+
+# Function to restore the latest database backup
+restore_db_latest() {
+    LATEST_BACKUP=$(ls -t "$BACKUP_DIR" | head -n 1)  # Get the latest backup file
+
+    if [ -n "$LATEST_BACKUP" ]; then
+        FULL_BACKUP_PATH="$BACKUP_DIR/$LATEST_BACKUP"
+        echo "Restoring from the latest backup: $FULL_BACKUP_PATH"
+        sudo cp "$FULL_BACKUP_PATH" "$DB_FILE"
+
+        if [ $? -eq 0 ]; then
+            echo "Restore successful: $DB_FILE"
+        else
+            echo "Restore failed!"
+        fi
+    else
+        echo "No backup files found to restore."
+    fi
 }
 
 # Function to run the install script
@@ -117,6 +149,54 @@ run_uninstall_script() {
     sudo bash "$UNINSTALL_SCRIPT"
 }
 
+# Function to backup the database
+backup_db() {
+    TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+    BACKUP_FILE="$BACKUP_DIR/submissions_$TIMESTAMP.db"
+
+    # Ensure the backup directory exists
+    sudo mkdir -p "$BACKUP_DIR"
+
+    # Copy the database file to the backup directory
+    sudo cp "$DB_FILE" "$BACKUP_FILE"
+
+    # Check if the copy was successful
+    if [ $? -eq 0 ]; then
+        echo "Backup successful: $BACKUP_FILE"
+    else
+        echo "Backup failed!"
+    fi
+}
+
+# Function to restore the database
+restore_db() {
+    echo "Available backups:"
+    echo "-------------------------------------------"
+    ls "$BACKUP_DIR" | nl
+    echo "-------------------------------------------"
+    read -p "Enter the number of the backup file to restore: " BACKUP_NUMBER
+
+    BACKUP_FILE=$(ls "$BACKUP_DIR" | sed -n "${BACKUP_NUMBER}p")
+
+    FULL_BACKUP_PATH="$BACKUP_DIR/$BACKUP_FILE"
+
+    # Check if the backup file exists
+    if [ -f "$FULL_BACKUP_PATH" ]; then
+        # Copy the backup file to the database location
+        echo "Restoring from the backup: $FULL_BACKUP_PATH"
+        sudo cp "$FULL_BACKUP_PATH" "$DB_FILE"
+
+        # Check if the restore was successful
+        if [ $? -eq 0 ]; then
+            echo "Restore successful: $DB_FILE"
+        else
+            echo "Restore failed!"
+        fi
+    else
+        echo "Backup file not found: $FULL_BACKUP_PATH"
+    fi
+}
+
 # Handle command line switches
 case "$1" in
     --download-only)
@@ -133,6 +213,14 @@ case "$1" in
         ;;
     --uninstall)
         run_uninstall_script
+        exit 0
+        ;;
+    --backup-db)
+        backup_db
+        exit 0
+        ;;
+    --restore-db)
+        restore_db
         exit 0
         ;;
     --help)
