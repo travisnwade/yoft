@@ -14,6 +14,7 @@
     - [Step 4: Verify firewall rules](#step-4-ensure-firewall-rules-allow-for-80-and-443)
     - [Step 5: Enable SSL](#step-5-enable-ssl)
     - [Step 6: Test the website](#step-6-test-your-website)
+- [License](#license)
 
 ## Demo
 A demonstration of the feeling tracker can be found here: [demo.yoft.org](https://demo.yoft.org)
@@ -161,3 +162,7 @@ sudo certbot --nginx -d YOURDOMAIN --agree-tos --no-eff-email -m YOU@YOURDOMAIN.
 
 ### Step 6: Test your website
 If you visit your newly deployed feeling-tracker web app, you should first be presented with a login prompt. Once you login, you should see the main interface like the screenshot at the top of this README. Test that you can input some notes along with a mood. You should see a history below the form to reflect on at later dates.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
