@@ -26,7 +26,7 @@ show_help() {
     echo "                        will be downloaded if it is not present in /opt/feeling-tracker/."
     echo "  --help                Display this help message and exit."
     echo
-    echo "If no option is provided, the script will display this help message."
+    echo "If no option is provided, the script will perform the --download-only argument."
     exit 0
 }
 
@@ -63,6 +63,7 @@ download_files() {
 
 # Function to refresh the webroot
 refresh_webroot() {
+
     # Clean or create the webroot directory
     echo "Creating or cleaning webroot directory at $WEBROOT_DIR..."
     sudo rm -rf $WEBROOT_DIR  # Remove the directory if it exists
@@ -71,10 +72,6 @@ refresh_webroot() {
     # Unzip the .zip file to the webroot directory
     echo "Unzipping $ZIP_FILE to $WEBROOT_DIR..."
     sudo unzip -o -d $WEBROOT_DIR $ZIP_FILE  # Overwrite files if they exist
-
-    # Preserve the submissions.db file and clear the rest
-    echo "Preserving submissions.db and clearing the rest of $WWW_DIR..."
-    sudo find $WWW_DIR -mindepth 1 ! -name 'submissions.db' -delete
 
     # Copy the contents of the refreshed webroot to the www directory
     echo "Copying contents of $WEBROOT_DIR to $WWW_DIR..."
