@@ -31,6 +31,7 @@ show_help() {
     echo "                        with a timestamped filename."
     echo "  --restore-db          Restore the submissions.db file from a specified backup in"
     echo "                        /opt/feeling-tracker/db_backups/."
+    echo "  --list-backups        List all available database backups with their file sizes."
     echo "  --help                Display this help message and exit."
     echo
     echo "If no option is provided, the script will perform the --download-only argument."
@@ -69,6 +70,7 @@ download_files() {
     echo "-------------------------------------------"
 }
 
+# Function to refresh the webroot
 refresh_webroot() {
 
     # Step 1: Backup the database before refreshing the webroot
@@ -199,6 +201,14 @@ restore_db() {
     fi
 }
 
+# Function to list all backups with file sizes
+list_backups() {
+    echo "Available backups:"
+    echo "-------------------------------------------"
+    ls -lh "$BACKUP_DIR" | awk '{print NR, $9, $5}' | sed '/^1 /d' # Print index, file name, and size
+    echo "-------------------------------------------"
+}
+
 # Handle command line switches
 case "$1" in
     --download-only)
@@ -223,6 +233,10 @@ case "$1" in
         ;;
     --restore-db)
         restore_db
+        exit 0
+        ;;
+    --list-backups)
+        list_backups
         exit 0
         ;;
     --help)
