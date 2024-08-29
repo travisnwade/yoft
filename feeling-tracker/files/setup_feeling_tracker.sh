@@ -9,6 +9,7 @@ INSTALL_SCRIPT="$TARGET_DIR/install_web_server_nginx.sh"
 UNINSTALL_SCRIPT="$TARGET_DIR/uninstall_web_server_nginx.sh"
 INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/install_web_server_nginx.sh"
 UNINSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/uninstall_web_server_nginx.sh"
+SETUP_SCRIPT_URL="https://github.com/travisnwade/yoft/raw/main/feeling-tracker/files/setup_feeling_tracker.sh"
 DB_FILE="$WWW_DIR/php/submissions.db"
 BACKUP_DIR="/opt/feeling-tracker/db_backups"
 
@@ -49,6 +50,7 @@ download_files() {
         "https://github.com/travisnwade/yoft/raw/main/feeling-tracker/webroot/zip/feeling-tracker.zip"
         "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/install_web_server_nginx.sh"
         "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/uninstall_web_server_nginx.sh"
+        "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/setup_feeling_tracker.sh"
     )
 
     # Download each file into the target directory, overwriting any existing files
