@@ -22,6 +22,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+// Handle export to CSV
+if (isset($_GET['action']) && $_GET['action'] === 'export') {
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment;filename="submissions.csv"');
+
+    $output = fopen('php://output', 'w');
+    fputcsv($output, ['ID', 'Emotion', 'Text', 'Timestamp']); // CSV headers
+
+    $results = $db->query("SELECT * FROM submissions ORDER BY timestamp DESC");
+    while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+        fputcsv($output, $row);
+    }
+    fclose($output);
+    exit;
+}
+
 // Handle retrieval of submission history
 $results = $db->query("SELECT * FROM submissions ORDER BY timestamp DESC");
 $submissions = [];

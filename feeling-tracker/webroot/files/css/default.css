@@ -23,6 +23,125 @@ h2 {
     margin-top: 50px; /* Adds a comfortable margin above the H2 heading */
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+/* Hover effect for hyperlinks */
+a:hover {
+    color: #fff;
+}
+
+
+
+
+
+
+/* Menu Button Styling */
+.menu-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #00adb5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+.menu-button i {
+    color: #000;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.menu-button:hover {
+    background-color: #00595d;
+}
+
+.menu-button:hover i {
+    color: #fff;
+}
+
+/* Menu Modal Styling */
+.menu-modal {
+    position: fixed;
+    top: 20px;
+    left: 80px;
+    background-color: rgba(0, 0, 0, 0.9); /* Updated opacity to 90% */
+    border-radius: 10px;
+    display: none;
+    z-index: 999;
+    padding: 30px; /* Updated padding for desktop */
+    width: auto;
+    height: auto;
+    max-width: 300px;
+}
+
+.menu-modal ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-modal .menu-item {
+    font-size: 1.5rem; /* Updated font size for desktop */
+    color: #00adb5;
+    margin: 10px 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.menu-modal .menu-item:hover {
+    color: #fff;
+}
+
+/* Responsive Menu Button for Mobile */
+@media (max-width: 700px) {
+    .menu-button {
+        top: auto;
+        left: auto;
+        right: 15px;
+        bottom: 15px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .menu-button i {
+        font-size: 20px;
+    }
+
+    .menu-modal {
+        top: auto;
+        left: auto;
+        right: 70px;
+        bottom: 70px;
+        padding: 25px; /* Updated padding for mobile */
+        max-width: calc(100vw - 30px);
+        max-height: calc(100vh - 30px);
+    }
+
+    .menu-modal .menu-item {
+        font-size: 1.5rem; /* Font size remains consistent on mobile */
+    }
+}
+
+
+
+
+
+
+
+
+
+
 /* Container for input and buttons, and submission history */
 .input-container, .submission-history {
     max-width: 700px; /* Restricts the container width */
@@ -296,7 +415,7 @@ button.confused.selected {
     }
 
     .emotion-buttons {
-        grid-template-columns: repeat(2, 1fr); /* Two columns layout on small screens */
+        grid-template-columns: 1fr; /* Single column layout on small screens */
     }
 
     .submission-history {

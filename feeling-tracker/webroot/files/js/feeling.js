@@ -90,3 +90,23 @@ function loadHistory() {
             });
         });        
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const menuButton = document.getElementById('menu-button');
+    const menuModal = document.getElementById('menu-modal');
+
+    menuButton.addEventListener('click', function () {
+        if (menuModal.style.display === 'block') {
+            menuModal.style.display = 'none';
+        } else {
+            menuModal.style.display = 'block';
+        }
+    });
+
+    // Close the menu if clicked outside of it
+    document.addEventListener('click', function (event) {
+        if (!menuButton.contains(event.target) && !menuModal.contains(event.target)) {
+            menuModal.style.display = 'none';
+        }
+    });
+});
