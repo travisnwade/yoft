@@ -95,6 +95,12 @@ textarea {
     color: #00adb5; /* Text color remains consistent */
 }
 
+/************************************/
+/*                                  */
+/****** EMOTION BUTTON SECTION ******/
+/*                                  */
+/************************************/
+
 /* Specific emotion button colors */
 button.anger {
     border-color: #ff4c4c; /* Neon Red border */
@@ -112,12 +118,28 @@ button.happy {
     border-color: #4cff4c; /* Neon Green border */
 }
 
-button.tired {
+button.embarassed {
     border-color: #c900f1; /* Neon Purple border */
 }
 
-button.meh {
-    border-color: #5c5c5c; /* Gray border */
+button.bored {
+    border-color: #e6e6e6; /* Gray border */
+}
+
+button.worried {
+    border-color: #3e57c9; /* Gray border */
+}
+
+button.surprised {
+    border-color: #f827ff; /* Gray border */
+}
+
+button.calm {
+    border-color: #b100c9; /* Gray border */
+}
+
+button.confused {
+    border-color: #ff5d2b; /* Gray border */
 }
 
 /* Button background fills when selected */
@@ -141,15 +163,83 @@ button.happy.selected {
     color: #000; /* Black text for contrast */
 }
 
-button.tired.selected {
+button.embarassed.selected {
     background-color: #c900f1; /* Fill with Neon Purple */
     color: #000; /* Black text for contrast */
 }
 
-button.meh.selected {
-    background-color: #5c5c5c; /* Fill with Gray */
+button.bored.selected {
+    background-color: #e6e6e6; /* Fill with Gray */
     color: #000; /* Black text for contrast */
 }
+button.worried.selected {
+    background-color: #3e57c9; /* Fill with Neon Red */
+    color: #000; /* Black text for contrast */
+}
+
+button.surprised.selected {
+    background-color: #f827ff; /* Fill with Neon Red */
+    color: #000; /* Black text for contrast */
+}
+
+button.calm.selected {
+    background-color: #b100c9; /* Fill with Neon Red */
+    color: #000; /* Black text for contrast */
+}
+
+button.confused.selected {
+    background-color: #ff5d2b; /* Fill with Neon Red */
+    color: #000; /* Black text for contrast */
+}
+
+/* Emotion text color matches corresponding button */
+.submission-history .entry .emotion.anger {
+    color: #ff4c4c; /* Neon Red */
+}
+
+.submission-history .entry .emotion.fear {
+    color: #ffa500; /* Neon Orange */
+}
+
+.submission-history .entry .emotion.sad {
+    color: #4c4cff; /* Neon Blue */
+}
+
+.submission-history .entry .emotion.happy {
+    color: #4cff4c; /* Neon Green */
+}
+
+.submission-history .entry .emotion.embarassed {
+    color: #c900f1; /* Neon Purple */
+}
+
+.submission-history .entry .emotion.bored {
+    color: #e6e6e6; /* Gray */
+}
+
+.submission-history .entry .emotion.worried {
+    color: #3e57c9; /* Gray */
+}
+
+.submission-history .entry .emotion.surprised {
+    color: #f827ff; /* Neon Purple */
+}
+
+.submission-history .entry .emotion.calm {
+    color: #b100c9; /* Gray */
+}
+
+.submission-history .entry .emotion.confused {
+    color: #ff5d2b; /* Gray */
+}
+
+/************************************/
+/*                                  */
+/****** EMOTION BUTTON SECTION ******/
+/*                                  */
+/************************************/
+
+
 
 /* Submission history grid layout */
 .submission-history {
@@ -188,31 +278,6 @@ button.meh.selected {
 /* Additional margin for emotion label */
 .submission-history .entry .emotion {
     margin-top: 10px;
-}
-
-/* Emotion text color matches corresponding button */
-.submission-history .entry .emotion.anger {
-    color: #ff4c4c; /* Neon Red */
-}
-
-.submission-history .entry .emotion.fear {
-    color: #ffa500; /* Neon Orange */
-}
-
-.submission-history .entry .emotion.sad {
-    color: #4c4cff; /* Neon Blue */
-}
-
-.submission-history .entry .emotion.happy {
-    color: #4cff4c; /* Neon Green */
-}
-
-.submission-history .entry .emotion.tired {
-    color: #c900f1; /* Neon Purple */
-}
-
-.submission-history .entry .emotion.meh {
-    color: #5c5c5c; /* Gray */
 }
 
 /* Text content within an entry */
