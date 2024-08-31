@@ -13,6 +13,7 @@ Feel free to clone this, make it your own, etc.
 ## Table of Contents
 - [Demo](#demo)
 - [Overview](#overview)
+- [Supported OS's](#tested-operating-systems)
 - [Features](#features)
   - [Backend Features](#backend-features)
 - [Usage](#usage)
@@ -53,6 +54,10 @@ The export to CSV functionality is disabled on the demo site.
 The **Feeling Tracker** is a simple web application that allows you to document and reflect on your emotions by selecting from predefined emotions and writing down some notes regarding the feeling you had at the time. This application also maintains a history of submissions, allowing users to review their past entries.
 
 I needed an easy way to do this, I tried a few apps out there but they were either too feature rich (weird I know), or didn't do what worked for me. That said, I wanted one of my own creation, and one that was very simple to use, manage and keep updated.
+
+## Tested Operating Systems
+
+At this time, I've only deployed and tested this project on Ubuntu 22.04 LTS. It should work on other Debian based distros but may need some adjustments. Of course the scripts and various installation methods would need to be modified to fit with other Linux flavors and of course, entirely different for Windows.
 
 ## Features
 - **Emotion Buttons**: Select the emotion you're feeling at the time, and that emotion will be associated with the text input. The idea here is to get a better understanding of yourself and your patterns.
