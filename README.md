@@ -211,6 +211,20 @@ Install the necessary packages and configure the webserver:
 ```bash
 ./setup_feeling_tracker.sh --install
 ```
+
+**What gets installed**: As noted in the [packages](#packages) section, the following gets installed on the server:
+
+- nginx
+- php-fpm 
+- php-sqlite3
+- unzip
+- apache2-utils
+- snap
+  - core
+  - certbot
+
+A [template Nginx](feeling-tracker/nginx/feeling-tracker) host file also gets deployed into `/etc/nginx/sites-available/feeling-tracker`. 
+
 During the installation, you'll be asked for a username and password. This is to set credentials for Nginx basic auth (this is sort of a personal web app after all)
 
 When the script is complete, you'll see an information block recommending next steps that need to be done on your part:
