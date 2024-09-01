@@ -37,6 +37,7 @@ Feel free to clone this, make it your own, etc.
   - [Backup your database](#backing-up-your-database)
   - [Restore your database](#restore-your-database)
   - [Update to a new version](#update-to-a-new-version)
+  - [Scheduling Backups](#scheduling-db-backups)
 - [License](#license)
 
 ## Demo
@@ -359,6 +360,32 @@ Then, you can refresh the webroot with the latest files using `--refresh-webroot
 
 ```bash
 /opt/feeling-tracker/setup_feeling_tracker.sh --refresh-webroot
+```
+
+### Scheduling DB Backups
+
+This is likely something you'd want to do to simply just have a bit of an extra layer of protection with your database files. Here's something quick that will automatically back up the `submissions.db` file every 6 hours (adjust to something that works for you). This will backup the `submissions.db` file every 6 hours to `/opt/feeling-tracker/db_backups/` using the built-in script argument `--backup-db`. This method will also output to a log file in `/var/log/feeling-tracker-backup.log`.
+
+Open the crontab file, and add the following line to the file:
+
+```
+crontab -e
+
+0 */6 * * * /bin/bash /opt/feeling-tracker/setup_feeling_tracker.sh --backup-db >> /var/log/feeling-tracker-backup.log 2>&1
+```
+
+`CNTL+X` and save your new entry.
+
+You can check if the cron job was added successfully by running:
+
+```
+crontab -l
+```
+
+You can check the latest log entries for the scheduled backups with:
+
+```
+tail -f /var/log/feeling-tracker-backup.log
 ```
 
 ## License
