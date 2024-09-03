@@ -11,7 +11,7 @@ INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feel
 UNINSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/uninstall_web_server_nginx.sh"
 SETUP_SCRIPT_URL="https://github.com/travisnwade/yoft/raw/main/feeling-tracker/files/setup_feeling_tracker.sh"
 DB_FILE="$WWW_DIR/php/submissions.db"
-BACKUP_DIR="/opt/feeling-tracker/db_backups"
+BACKUP_DIR="/var/feeling-tracker/db_backups"
 
 # Function to display help
 show_help() {
@@ -34,7 +34,7 @@ show_help() {
     echo "  --list-backups        List all available database backups with their file sizes."
     echo "  --help                Display this help message and exit."
     echo
-    echo "If no option is provided, the script will perform the --download-only argument."
+    echo "If no option is provided, the script will show the help text."
     exit 0
 }
 
@@ -261,7 +261,7 @@ case "$1" in
         show_help
         ;;
     *)
-        download_files
+        show_help
         exit 1
         ;;
 esac
