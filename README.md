@@ -37,7 +37,8 @@ Feel free to clone this, make it your own, etc.
   - [Backup your database](#backing-up-your-database)
   - [Restore your database](#restore-your-database)
   - [Update to a new version](#update-to-a-new-version)
-  - [Scheduling Backups](#scheduling-db-backups)
+  - [Scheduling backups](#scheduling-db-backups)
+  - [Creating the yoft CLI alias](#create-a-yoft-cli-alias)
 - [License](#license)
 
 ## Demo
@@ -164,12 +165,12 @@ wget "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/fi
 chmod +x setup_feeling_tracker.sh
 
 # Run the script. This will populate necessary app files in /opt/feeling-tracker/
-./setup_feeling_tracker.sh
+./setup_feeling_tracker.sh --download-only
 ```
 
-When run, the script downloads and places needed installation and configuration files in the `/opt/feeling-tracker/` directory. This needs to be done first before the web application gets installed and necessary dependancies. This is because the script handles that portion for us and references files in `/opt/feeling-tracker/`. 
+When run with `--download-only`, the script downloads and places needed installation and configuration files in the `/opt/feeling-tracker/` directory. This needs to be done first before the web application gets installed and necessary dependancies. This is because the script handles that portion for us and references files in `/opt/feeling-tracker/`. 
 
-This directory will also contain *backups* for the `submissions.db` SQLite database in the `/opt/feeling-tracker/db_backups/` directory that is created when the `setup_feeling_tracker.sh --backup-db` argument is passed.
+This directory `/var/feeling-tracker/db_backups` will also get created for the `submissions.db` SQLite database backups that is created when the `setup_feeling_tracker.sh --backup-db` argument is passed.
 
 When the script finishes, you should have a directory like so:
 
@@ -203,11 +204,11 @@ ls /opt/feeling-tracker/
 --help                  # A help file for reminding you what these do.
 ```
 
-If no argument is passed, then `./setup_feeling_tracker.sh` and `./setup_feeling_tracker.sh --download-only` perform the same thing. (It'll create and populate `/opt/feeling-tracker/` with the latest files). So if you make edits in that directory and run the script without an argument or with `--download-only`, then your edits will be overwritten. If you want to customize things, move them somewhere else.
+If no argument is passed, then `./setup_feeling_tracker.sh` will simply show the help text above.
 
 ### Step 2: Install the webserver and needed dependancy packages
 
-Install the necessary packages and configure the webserver:
+Install the necessary packages and configure the webserver with `--install` once `/opt/feeling-tracker/` has been populated with the ``--download-only` argument:
 
 ```bash
 ./setup_feeling_tracker.sh --install
@@ -299,6 +300,8 @@ In [Step 1](#step-1-download-and-prepare-necessary-installation-files) under [Av
 - [Backup your database](#backing-up-your-database)
 - [Restore your database](#restore-your-database)
 - [Update to a new version](#update-to-a-new-version)
+- [Scheduling backups](#scheduling-db-backups)
+- [Creating the yoft CLI alias](#create-a-yoft-cli-alias)
 
 ### Backing up your database
 
@@ -356,7 +359,7 @@ First, you need to get the latest files from source. This will update the `/opt/
 /opt/feeling-tracker/setup_feeling_tracker.sh --download-only
 ```
 
-Then, you can refresh the webroot with the latest files using `--refresh-webroot`.  This will perform a backup of your database to `/opt/feeling-tracker/db_backups`, clear the web root, unzip the latest webroot from source and copy the new webroot files to `/var/www/html/feeling-tracker/` and restore the database. This is so you get the latest files while keeping your submission history.
+Then, you can refresh the webroot with the latest files using `--refresh-webroot`.  This will perform a backup of your database to `/var/feeling-tracker/db_backups`, clear the web root, unzip the latest webroot from source and copy the new webroot files to `/var/www/html/feeling-tracker/` and restore the database. This is so you get the latest files while keeping your submission history.
 
 ```bash
 /opt/feeling-tracker/setup_feeling_tracker.sh --refresh-webroot
@@ -364,7 +367,7 @@ Then, you can refresh the webroot with the latest files using `--refresh-webroot
 
 ### Scheduling DB Backups
 
-This is likely something you'd want to do to simply just have a bit of an extra layer of protection with your database files. Here's something quick that will automatically back up the `submissions.db` file every 6 hours (adjust to something that works for you). This will backup the `submissions.db` file every 6 hours to `/opt/feeling-tracker/db_backups/` using the built-in script argument `--backup-db`. This method will also output to a log file in `/var/log/feeling-tracker-backup.log`.
+This is likely something you'd want to do to simply just have a bit of an extra layer of protection with your database files. Here's something quick that will automatically back up the `submissions.db` file every 6 hours (adjust to something that works for you). This will backup the `submissions.db` file every 6 hours to `/var/feeling-tracker/db_backups/` using the built-in script argument `--backup-db`. This method will also output to a log file in `/var/log/feeling-tracker-backup.log`.
 
 Open the crontab file, and add the following line to the file:
 
@@ -386,6 +389,26 @@ You can check the latest log entries for the scheduled backups with:
 
 ```
 tail -f /var/log/feeling-tracker-backup.log
+```
+
+### Create a YOFT CLI Alias
+
+To make it easier to call and use the script, you can setup an alias. For example:
+
+```bash
+nano ~/.bashrc
+```
+
+Add the following line to the end of the file:
+
+```bash
+alias yoft='/opt/feeling-tracker/setup_feeling_tracker.sh'
+```
+
+To apply the alias:
+
+```bash
+source ~/.bashrc
 ```
 
 ## License
