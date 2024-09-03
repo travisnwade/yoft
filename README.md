@@ -159,18 +159,18 @@ Download the setup installation script, make it executible and run it. This prep
 
 ```bash
 # Download the script
-wget "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/setup_feeling_tracker.sh"
+wget "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/yoft.sh"
 
 # Make it executable
-chmod +x setup_feeling_tracker.sh
+chmod +x yoft.sh
 
 # Run the script. This will populate necessary app files in /opt/yoft/
-./setup_feeling_tracker.sh --download-only
+./yoft.sh --download-only
 ```
 
 When run with `--download-only`, the script downloads and places needed installation and configuration files in the `/opt/yoft/` directory. This needs to be done first before the web application gets installed and necessary dependancies. This is because the script handles that portion for us and references files in `/opt/yoft/`. 
 
-This directory `/var/yoft/db_backups` will also get created for the `submissions.db` SQLite database backups that is created when the `setup_feeling_tracker.sh --backup-db` argument is passed.
+This directory `/var/yoft/db_backups` will also get created for the `submissions.db` SQLite database backups that is created when the `yoft.sh --backup-db` argument is passed.
 
 When the script finishes, you should have a directory like so:
 
@@ -179,7 +179,7 @@ ls /opt/yoft/
 
 ├── yoft                 # Nginx default conf file
 ├── yoft.zip             # Web app files
-├── setup_feeling_tracker.sh        # The same setup script you downloaded above. To have it in a central spot with the other files for managing the application.
+├── yoft.sh        # The same setup script you downloaded above. To have it in a central spot with the other files for managing the application.
 ├── install_web_server_nginx.sh     # Installs all necessary packages to run the application such as Nginx, PHP, SQLite3, certbot, etc.
 └── uninstall_web_server_nginx.sh   # Uninstalls everything the script above installs (even if you already had it installed! You've been warned!)
 ```
@@ -204,14 +204,14 @@ ls /opt/yoft/
 --help                  # A help file for reminding you what these do.
 ```
 
-If no argument is passed, then `./setup_feeling_tracker.sh` will simply show the help text above.
+If no argument is passed, then `./yoft.sh` will simply show the help text above.
 
 ### Step 2: Install the webserver and needed dependancy packages
 
 Install the necessary packages and configure the webserver with `--install` once `/opt/yoft/` has been populated with the ``--download-only` argument:
 
 ```bash
-./setup_feeling_tracker.sh --install
+./yoft.sh --install
 ```
 
 **What gets installed**: As noted in the [packages](#packages) section, the following gets installed on the server:
@@ -295,7 +295,7 @@ If you visit your newly deployed yoft web app, you should first be presented wit
 
 ## Managing the Application
 
-In [Step 1](#step-1-download-and-prepare-necessary-installation-files) under [Available Script Arguments](#available-script-arguments), there are several switches that can be used with the `setup_feeling_tracker.sh` script. Here are some common tasks you may perform:
+In [Step 1](#step-1-download-and-prepare-necessary-installation-files) under [Available Script Arguments](#available-script-arguments), there are several switches that can be used with the `yoft.sh` script. Here are some common tasks you may perform:
 
 - [Backup your database](#backing-up-your-database)
 - [Restore your database](#restore-your-database)
@@ -308,7 +308,7 @@ In [Step 1](#step-1-download-and-prepare-necessary-installation-files) under [Av
 You can perform one-off backups of your `submissions.db` with:
 
 ```bash
-./setup_feeling_tracker.sh --backup-db
+./yoft.sh --backup-db
 ```
 
 You should see an output similar to the below:
@@ -321,7 +321,7 @@ Backup successful: /opt/yoft/db_backups/submissions_20240830_173122.db
 If you need to restore your database, using the `--restore-db` argument will list available backups in the `/opt/yoft/db_backups` in numerical order, allowing you to choose which backup you'd like to restore:
 
 ```bash
-./setup_feeling_tracker.sh --restore-db
+./yoft.sh --restore-db
 ```
 
 You should see an output similar to the below:
@@ -337,7 +337,7 @@ Enter the number of the backup file to restore:
 When you chose an option, you should see something like so:
 
 ```bash
-yoft:~# ./setup_feeling_tracker.sh --restore-db
+yoft:~# ./yoft.sh --restore-db
 Available backups:
 -------------------------------------------
      1  submissions_20240830_155139.db
@@ -356,13 +356,13 @@ When a new version comes out (if you want to keep using new versions that I publ
 First, you need to get the latest files from source. This will update the `/opt/yoft/` directory with the latest files:
 
 ```bash
-/opt/yoft/setup_feeling_tracker.sh --download-only
+/opt/yoft/yoft.sh --download-only
 ```
 
 Then, you can refresh the webroot with the latest files using `--refresh-webroot`.  This will perform a backup of your database to `/var/yoft/db_backups`, clear the web root, unzip the latest webroot from source and copy the new webroot files to `/var/www/html/yoft/` and restore the database. This is so you get the latest files while keeping your submission history.
 
 ```bash
-/opt/yoft/setup_feeling_tracker.sh --refresh-webroot
+/opt/yoft/yoft.sh --refresh-webroot
 ```
 
 ### Scheduling DB Backups
@@ -374,7 +374,7 @@ Open the crontab file, and add the following line to the file:
 ```
 crontab -e
 
-0 */6 * * * /bin/bash /opt/yoft/setup_feeling_tracker.sh --backup-db >> /var/log/yoft-backup.log 2>&1
+0 */6 * * * /bin/bash /opt/yoft/yoft.sh --backup-db >> /var/log/yoft-backup.log 2>&1
 ```
 
 `CNTL+X` and save your new entry.
@@ -402,7 +402,7 @@ nano ~/.bashrc
 Add the following line to the end of the file:
 
 ```bash
-alias yoft='/opt/yoft/setup_feeling_tracker.sh'
+alias yoft='/opt/yoft/yoft.sh'
 ```
 
 To apply the alias:
