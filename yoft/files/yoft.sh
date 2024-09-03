@@ -27,10 +27,10 @@ show_help() {
     echo "                        will be downloaded if it is not present in /opt/yoft/."
     echo "  --uninstall           Run the uninstall script to remove the web server. The script"
     echo "                        will be downloaded if it is not present in /opt/yoft/."
-    echo "  --backup-db           Backup the submissions.db file to /opt/yoft/db_backups/"
+    echo "  --backup-db           Backup the submissions.db file to /var/yoft/db_backups/"
     echo "                        with a timestamped filename."
     echo "  --restore-db          Restore the submissions.db file from a specified backup in"
-    echo "                        /opt/yoft/db_backups/."
+    echo "                        /var/yoft/db_backups/."
     echo "  --list-backups        List all available database backups with their file sizes."
     echo "  --help                Display this help message and exit."
     echo

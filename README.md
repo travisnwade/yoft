@@ -53,7 +53,7 @@ The export to CSV functionality is disabled on the demo site.
 **Please do not put any personal information in the demo site!**
 
 ## Overview
-The **Feeling Tracker** is a simple web application that allows you to document and reflect on your emotions by selecting from predefined emotions and writing down some notes regarding the feeling you had at the time. This application also maintains a history of submissions, allowing users to review their past entries.
+**YOFT** is a simple web application that allows you to document and reflect on your emotions by selecting from predefined emotions and writing down some notes regarding the feeling you had at the time. This application also maintains a history of submissions, allowing users to review their past entries.
 
 I needed an easy way to do this, I tried a few apps out there but they were either too feature rich (weird I know), or didn't do what worked for me. That said, I wanted one of my own creation, and one that was very simple to use, manage and keep updated.
 
@@ -139,6 +139,7 @@ The web files are organized as follows when deployed, located in `/var/www/html/
 │   └── feeling-bg.jpg    # Background image for the site
 ├── php/
 │   └── submissions.php   # PHP file for handling SQLite database entries.
+│   └── submissions.db    # The database file itself once you have submissions.
 ├── images/
 │   └── icons/            # Icons for favicons and other purposes
 ├── robots.txt
@@ -148,7 +149,7 @@ The web files are organized as follows when deployed, located in `/var/www/html/
 ## Installation
 ### NOTE:
 
-This procedure has only been tested on a fresh installation of Ubuntu 22.04 hosted in Vultr. I have not done testing in other releases or Linux flavors.
+This procedure has only been tested on a fresh installation of Ubuntu 22.04. I have not done testing in other releases or Linux flavors.
 
 It is recommended to deploy this application to a standalone dedicated server as the installation and uninstallation scripts perform global operations on the server such as Nginx provisioning and de-provisioning, certbot installations, Nginx configs and more.  
 
@@ -195,7 +196,7 @@ ls /opt/yoft/
 
 --uninstall             # This uninstalls everything that the script installed. This will uninstall NGINX, PHP, SQLite, etc.
 
---backup-db             # Backs up the submissions.db file to /opt/yoft/db_backups
+--backup-db             # Backs up the submissions.db file to /var/yoft/db_backups
 
 --restore-db            # Restores the submissions.db file.
 
