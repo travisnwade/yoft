@@ -9,7 +9,7 @@ INSTALL_SCRIPT="$TARGET_DIR/install_web_server_nginx.sh"
 UNINSTALL_SCRIPT="$TARGET_DIR/uninstall_web_server_nginx.sh"
 INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/install_web_server_nginx.sh"
 UNINSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/uninstall_web_server_nginx.sh"
-SETUP_SCRIPT_URL="https://github.com/travisnwade/yoft/raw/main/yoft/files/setup_feeling_tracker.sh"
+SETUP_SCRIPT_URL="https://github.com/travisnwade/yoft/raw/main/yoft/files/yoft.sh"
 DB_FILE="$WWW_DIR/php/submissions.db"
 BACKUP_DIR="/var/yoft/db_backups"
 
@@ -51,7 +51,7 @@ download_files() {
         "https://github.com/travisnwade/yoft/raw/main/yoft/webroot/zip/yoft.zip"
         "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/install_web_server_nginx.sh"
         "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/uninstall_web_server_nginx.sh"
-        "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/setup_feeling_tracker.sh"
+        "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/yoft.sh"
     )
 
     # Download each file into the target directory, overwriting any existing files
