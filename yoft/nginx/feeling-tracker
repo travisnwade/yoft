@@ -3,7 +3,7 @@ server {
     server_name localhost;
     # For your own domain, change localhost above to your domain.
 
-    root /var/www/html/feeling-tracker;
+    root /var/www/html/yoft;
     index index.php index.html index.htm;
 
     # Basic Authentication
@@ -19,6 +19,6 @@ server {
         fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
     }
 
-    access_log /var/log/nginx/feeling-tracker.access.log;
-    error_log /var/log/nginx/feeling-tracker.error.log;
+    access_log /var/log/nginx/yoft.access.log;
+    error_log /var/log/nginx/yoft.error.log;
 }

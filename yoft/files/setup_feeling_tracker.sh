@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Define directories
-TARGET_DIR="/opt/feeling-tracker"
-WEBROOT_DIR="$TARGET_DIR/feeling-tracker-webroot"
-WWW_DIR="/var/www/html/feeling-tracker"
-ZIP_FILE="$TARGET_DIR/feeling-tracker.zip"
+TARGET_DIR="/opt/yoft"
+WEBROOT_DIR="$TARGET_DIR/yoft-webroot"
+WWW_DIR="/var/www/html/yoft"
+ZIP_FILE="$TARGET_DIR/yoft.zip"
 INSTALL_SCRIPT="$TARGET_DIR/install_web_server_nginx.sh"
 UNINSTALL_SCRIPT="$TARGET_DIR/uninstall_web_server_nginx.sh"
-INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/install_web_server_nginx.sh"
-UNINSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/uninstall_web_server_nginx.sh"
-SETUP_SCRIPT_URL="https://github.com/travisnwade/yoft/raw/main/feeling-tracker/files/setup_feeling_tracker.sh"
+INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/install_web_server_nginx.sh"
+UNINSTALL_SCRIPT_URL="https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/uninstall_web_server_nginx.sh"
+SETUP_SCRIPT_URL="https://github.com/travisnwade/yoft/raw/main/yoft/files/setup_feeling_tracker.sh"
 DB_FILE="$WWW_DIR/php/submissions.db"
-BACKUP_DIR="/var/feeling-tracker/db_backups"
+BACKUP_DIR="/var/yoft/db_backups"
 
 # Function to display help
 show_help() {
@@ -19,18 +19,18 @@ show_help() {
     echo "Manage the installation and maintenance of the Feeling Tracker web server."
     echo
     echo "Options:"
-    echo "  --download-only       Download the necessary files to /opt/feeling-tracker without performing"
+    echo "  --download-only       Download the necessary files to /opt/yoft without performing"
     echo "                        any other operations."
     echo "  --refresh-webroot     Refresh the webroot directory with the contents of the ZIP file,"
     echo "                        preserving the submissions.db file, and restarting Nginx."
     echo "  --install             Run the install script to set up the web server. The script"
-    echo "                        will be downloaded if it is not present in /opt/feeling-tracker/."
+    echo "                        will be downloaded if it is not present in /opt/yoft/."
     echo "  --uninstall           Run the uninstall script to remove the web server. The script"
-    echo "                        will be downloaded if it is not present in /opt/feeling-tracker/."
-    echo "  --backup-db           Backup the submissions.db file to /opt/feeling-tracker/db_backups/"
+    echo "                        will be downloaded if it is not present in /opt/yoft/."
+    echo "  --backup-db           Backup the submissions.db file to /opt/yoft/db_backups/"
     echo "                        with a timestamped filename."
     echo "  --restore-db          Restore the submissions.db file from a specified backup in"
-    echo "                        /opt/feeling-tracker/db_backups/."
+    echo "                        /opt/yoft/db_backups/."
     echo "  --list-backups        List all available database backups with their file sizes."
     echo "  --help                Display this help message and exit."
     echo
@@ -47,11 +47,11 @@ download_files() {
 
     # Define URLs for the files to be downloaded
     FILES=(
-        "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/nginx/feeling-tracker"
-        "https://github.com/travisnwade/yoft/raw/main/feeling-tracker/webroot/zip/feeling-tracker.zip"
-        "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/install_web_server_nginx.sh"
-        "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/uninstall_web_server_nginx.sh"
-        "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/files/setup_feeling_tracker.sh"
+        "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/nginx/yoft"
+        "https://github.com/travisnwade/yoft/raw/main/yoft/webroot/zip/yoft.zip"
+        "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/install_web_server_nginx.sh"
+        "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/uninstall_web_server_nginx.sh"
+        "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/files/setup_feeling_tracker.sh"
     )
 
     # Download each file into the target directory, overwriting any existing files

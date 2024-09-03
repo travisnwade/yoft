@@ -25,12 +25,12 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
 # Download the template Nginx conf
 echo "Getting baseline nginx config for new host..."
-wget "https://raw.githubusercontent.com/travisnwade/yoft/main/feeling-tracker/nginx/feeling-tracker" -O /tmp/feeling-tracker
-mv /tmp/feeling-tracker /etc/nginx/sites-available/feeling-tracker
+wget "https://raw.githubusercontent.com/travisnwade/yoft/main/yoft/nginx/yoft" -O /tmp/yoft
+mv /tmp/yoft /etc/nginx/sites-available/yoft
 
 # Configure Nginx to use PHP Processor
 echo "Configuring Nginx to use PHP..."
-NGINX_CONF="/etc/nginx/sites-available/feeling-tracker"
+NGINX_CONF="/etc/nginx/sites-available/yoft"
 
 # Enable the new site configuration and remove the default
 echo "Enabling site configuration..."
@@ -38,21 +38,21 @@ sudo ln -s $NGINX_CONF /etc/nginx/sites-enabled/
 sudo rm /etc/nginx/sites-enabled/default
 
 # Set proper permissions for the web directory
-echo "Setting permissions for /var/www/html/feeling-tracker..."
-sudo mkdir -p /var/www/html/feeling-tracker
-sudo chown -R $USER:$USER /var/www/html/feeling-tracker
+echo "Setting permissions for /var/www/html/yoft..."
+sudo mkdir -p /var/www/html/yoft
+sudo chown -R $USER:$USER /var/www/html/yoft
 
-# Download and unzip the project files directly into /var/www/html/feeling-tracker
-echo "Downloading and unzipping the project files..."
-wget "https://github.com/travisnwade/yoft/raw/main/feeling-tracker/webroot/zip/feeling-tracker.zip" -O /tmp/feeling-tracker.zip
-unzip /tmp/feeling-tracker.zip -d /tmp/feeling-tracker
-cp -a /tmp/feeling-tracker/. /var/www/html/feeling-tracker/
+# Download and unzip the YOFT files directly into /var/www/html/yoft
+echo "Downloading and unzipping the YOFT files..."
+wget "https://github.com/travisnwade/yoft/raw/main/yoft/webroot/zip/yoft.zip" -O /tmp/yoft.zip
+unzip /tmp/yoft.zip -d /tmp/yoft
+cp -a /tmp/yoft/. /var/www/html/yoft/
 
-# Set permissions for the project directory and files
-echo "Setting permissions for project files..."
-sudo chown -R www-data:www-data /var/www/html/feeling-tracker
-sudo chmod -R 755 /var/www/html/feeling-tracker
-sudo chmod 644 /var/www/html/feeling-tracker/php/submissions.db
+# Set permissions for the YOFT directory and files
+echo "Setting permissions for YOFT files..."
+sudo chown -R www-data:www-data /var/www/html/yoft
+sudo chmod -R 755 /var/www/html/yoft
+sudo chmod 644 /var/www/html/yoft/php/submissions.db
 
 # Ask user for a username for basic authentication
 read -p "Enter a username for basic authentication: " username
@@ -89,25 +89,22 @@ echo "Restarting Nginx..."
 sudo systemctl restart nginx
 
 echo "-------------------------------------------"
-echo "Installation complete. Your feeling tracker web server is ready."
-echo "You can now visit your feeling tracker at http://localhost or your server's domain or IP address."
+echo "Installation complete. The YOFT web server is ready."
+echo "You can now visit your YOFT instance at http://localhost or your server's domain or IP address."
 echo "-------------------------------------------"
 echo "*** FOR YOU TO DO NEXT ***"
 echo ""
 echo "1.  Update the server_name block to your domain in:"
-echo "	  /etc/nginx/sites-available/feeling-tracker"
+echo "	  /etc/nginx/sites-available/yoft"
 echo "	  to use your own domain and if you plan on using Certbot (see below)."
 echo ""	
 echo "2.  Update your firewall rules for 80 and 443 to be allowed (required by certbot)"
 echo ""
 echo "3.  The basic auth user '$username' has been created."
-echo ""
-echo "    3.a  If you want to change this user, update the .htpasswd file at:"
-echo "         /etc/nginx/.htpasswd"
-echo ""	
-echo "    Then restart the Nginx service."
-echo "    sudo systemctl restart nginx.service"
+echo "    Use these credentials to log into your instance of YOFT."
 echo ""
 echo "4.  For SSL (certbot is already loaded and ready):"
 echo "    sudo certbot --nginx -d YOURDOMAIN --agree-tos --no-eff-email -m YOU@YOURDOMAIN.com"
+echo ""
+echo "For more information, visit go.twade.io/yoft"
 echo "-------------------------------------------"
