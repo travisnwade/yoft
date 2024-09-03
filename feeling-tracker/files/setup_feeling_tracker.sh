@@ -201,11 +201,29 @@ restore_db() {
     fi
 }
 
-# Function to list all backups with file sizes
+# Function to list all backups with file sizes and total size
 list_backups() {
     echo "Available backups:"
     echo "-------------------------------------------"
     ls -lh "$BACKUP_DIR" | awk '{print NR, $9, $5}' | sed '/^1 /d' # Print index, file name, and size
+
+    # Calculate total size in bytes
+    TOTAL_SIZE=$(ls -lh "$BACKUP_DIR" | awk '{print $5}' | grep -o '[0-9]\+' | paste -sd+ - | bc)
+
+    # Convert total size to human-readable format
+    if [ "$TOTAL_SIZE" -ge 1073741824 ]; then
+        TOTAL_SIZE=$(echo "scale=2; $TOTAL_SIZE/1073741824" | bc)
+        SIZE_UNIT="GB"
+    elif [ "$TOTAL_SIZE" -ge 1048576 ]; then
+        TOTAL_SIZE=$(echo "scale=2; $TOTAL_SIZE/1048576" | bc)
+        SIZE_UNIT="MB"
+    else
+        TOTAL_SIZE=$(echo "scale=2; $TOTAL_SIZE/1024" | bc)
+        SIZE_UNIT="KB"
+    fi
+
+    echo "-------------------------------------------"
+    echo "Total size of all backups: $TOTAL_SIZE $SIZE_UNIT"
     echo "-------------------------------------------"
 }
 
