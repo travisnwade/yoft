@@ -170,7 +170,7 @@ chmod +x yoft.sh
 
 When run with `--download-only`, the script downloads and places needed installation and configuration files in the `/opt/yoft/` directory. This needs to be done first before the web application gets installed and necessary dependancies. This is because the script handles that portion for us and references files in `/opt/yoft/`. 
 
-This directory `/var/yoft/db_backups` will also get created for the `submissions.db` SQLite database backups that is created when the `yoft.sh --backup-db` argument is passed.
+This directory `/var/yoft/db_backups` will also get created for the `submissions.db` SQLite database backups that is created when the `--backup-db` argument is passed.
 
 When the script finishes, you should have a directory like so:
 
@@ -204,14 +204,20 @@ ls /opt/yoft/
 --help                  # A help file for reminding you what these do.
 ```
 
-If no argument is passed, then `./yoft.sh` will simply show the help text above.
+If no argument is passed, then `./yoft.sh` or `yoft` will simply show the help text above.
 
 ### Step 2: Install the webserver and needed dependancy packages
 
 Install the necessary packages and configure the webserver with `--install` once `/opt/yoft/` has been populated with the ``--download-only` argument:
 
+**Script**
 ```bash
 ./yoft.sh --install
+```
+
+**Alias**
+```bash
+yoft --install
 ```
 
 **What gets installed**: As noted in the [packages](#packages) section, the following gets installed on the server:
@@ -239,21 +245,18 @@ You can now visit your feeling tracker at http://localhost or your server's doma
 *** FOR YOU TO DO NEXT ***
 
 1.  Update the server_name block to your domain in:
-          /etc/nginx/sites-available/yoft
-          to use your own domain and if you plan on using Certbot (see below).
-
+	  /etc/nginx/sites-available/yoft
+	  to use your own domain and if you plan on using Certbot (see below).
+	
 2.  Update your firewall rules for 80 and 443 to be allowed (required by certbot)
 
-3.  The basic auth user 'YOUR-USERNAME-YOU-SET' has been created.
-
-    3.a  If you want to change this user, update the .htpasswd file at:
-         /etc/nginx/.htpasswd
-
-    Then restart the Nginx service.
-    sudo systemctl restart nginx.service
+3.  The basic auth user '$username' has been created.
+    Use these credentials to log into your instance of YOFT.
 
 4.  For SSL (certbot is already loaded and ready):
     sudo certbot --nginx -d YOURDOMAIN --agree-tos --no-eff-email -m YOU@YOURDOMAIN.com
+
+For more information, visit go.twade.io/yoft
 -------------------------------------------
 ```
 
@@ -295,7 +298,7 @@ If you visit your newly deployed yoft web app, you should first be presented wit
 
 ## Managing the Application
 
-In [Step 1](#step-1-download-and-prepare-necessary-installation-files) under [Available Script Arguments](#available-script-arguments), there are several switches that can be used with the `yoft.sh` script. Here are some common tasks you may perform:
+In [Step 1](#step-1-download-and-prepare-necessary-installation-files) under [Available Script Arguments](#available-script-arguments), there are several switches that can be used with the `yoft.sh` script or the `yoft` CLI alias. Here are some common tasks you may perform:
 
 - [Backup your database](#backing-up-your-database)
 - [Restore your database](#restore-your-database)
@@ -308,7 +311,11 @@ In [Step 1](#step-1-download-and-prepare-necessary-installation-files) under [Av
 You can perform one-off backups of your `submissions.db` with:
 
 ```bash
+# script
 ./yoft.sh --backup-db
+
+# alias
+yoft --backup-db
 ```
 
 You should see an output similar to the below:
@@ -321,7 +328,11 @@ Backup successful: /opt/yoft/db_backups/submissions_20240830_173122.db
 If you need to restore your database, using the `--restore-db` argument will list available backups in the `/opt/yoft/db_backups` in numerical order, allowing you to choose which backup you'd like to restore:
 
 ```bash
+# script
 ./yoft.sh --restore-db
+
+# alias
+yoft --restore-db
 ```
 
 You should see an output similar to the below:
@@ -356,13 +367,21 @@ When a new version comes out (if you want to keep using new versions that I publ
 First, you need to get the latest files from source. This will update the `/opt/yoft/` directory with the latest files:
 
 ```bash
+# script
 /opt/yoft/yoft.sh --download-only
+
+# alias
+yoft --download-only
 ```
 
 Then, you can refresh the webroot with the latest files using `--refresh-webroot`.  This will perform a backup of your database to `/var/yoft/db_backups`, clear the web root, unzip the latest webroot from source and copy the new webroot files to `/var/www/html/yoft/` and restore the database. This is so you get the latest files while keeping your submission history.
 
 ```bash
+# script
 /opt/yoft/yoft.sh --refresh-webroot
+
+# alias
+yoft --refresh-webroot
 ```
 
 ### Scheduling DB Backups
@@ -392,6 +411,8 @@ tail -f /var/log/yoft-backup.log
 ```
 
 ### Create a YOFT CLI Alias
+
+The script (regarless of which argument is passed), *should* create this alias for you. However, if it does not, the following can help you create one that should work.
 
 To make it easier to call and use the script, you can setup an alias. For example:
 
