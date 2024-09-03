@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define directories
+# Define directories and files
 TARGET_DIR="/opt/yoft"
 WEBROOT_DIR="$TARGET_DIR/yoft-webroot"
 WWW_DIR="/var/www/html/yoft"
@@ -38,6 +38,21 @@ show_help() {
     exit 0
 }
 
+# Function to add alias to .bashrc
+add_alias_to_bashrc() {
+    ALIAS_CMD="alias yoft='sudo /opt/yoft/yoft.sh'"
+    BASHRC="$HOME/.bashrc"
+
+    # Check if the alias already exists in .bashrc
+    if ! grep -q "$ALIAS_CMD" "$BASHRC"; then
+        echo "Adding 'yoft' alias to $BASHRC..."
+        echo "$ALIAS_CMD" >> "$BASHRC"
+        echo "Alias 'yoft' added. Please run 'source ~/.bashrc' to apply the changes, or restart your terminal."
+    else
+        echo "Alias 'yoft' already exists in $BASHRC."
+    fi
+}
+
 # Function to download files
 download_files() {
     # Create or clean the target directory
@@ -72,7 +87,6 @@ download_files() {
 
 # Function to refresh the webroot
 refresh_webroot() {
-
     # Step 1: Backup the database before refreshing the webroot
     echo "Backing up the database before refreshing the webroot..."
     backup_db
@@ -226,6 +240,9 @@ list_backups() {
     echo "Total size of all backups: $TOTAL_SIZE $SIZE_UNIT"
     echo "-------------------------------------------"
 }
+
+# Add the alias to .bashrc
+add_alias_to_bashrc
 
 # Handle command line switches
 case "$1" in
