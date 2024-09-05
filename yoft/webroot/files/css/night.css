@@ -377,7 +377,7 @@ button.confused.selected {
 .submission-history .entry .timestamp,
 .submission-history .entry .emotion {
     font-size: 1rem;
-    color: #ffb451; /* Neon cyan color for timestamps and emotion labels */
+    color: #ffb451;
     text-align: left;
 }
 
