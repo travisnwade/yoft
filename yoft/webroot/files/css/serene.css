@@ -358,7 +358,7 @@ button.confused.selected {
 
 /* Individual entry styling in submission history */
 .submission-history .entry {
-    border: 1px solid #00adb5;
+    border: 1px solid #ffb451;
     padding: 10px;
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
@@ -377,7 +377,7 @@ button.confused.selected {
 .submission-history .entry .timestamp,
 .submission-history .entry .emotion {
     font-size: 1rem;
-    color: #00adb5; /* Neon cyan color for timestamps and emotion labels */
+    color: #ffb451; /* Neon cyan color for timestamps and emotion labels */
     text-align: left;
 }
 
