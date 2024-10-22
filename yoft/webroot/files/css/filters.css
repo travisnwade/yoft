@@ -1,0 +1,197 @@
+/* Black background and readable text colors */
+body {
+    background-color: #000; /* Plain black background */
+    color: #e0e0e0; /* Light gray text for readability */
+    font-family: 'Poppins', Arial, sans-serif; /* Consistent font */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Main heading styling */
+.main-heading {
+    font-size: 2.5rem;
+    color: #008d76; /* Neon cyan for contrast */
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 0 5px rgba(0, 100, 100, 0.7);
+}
+
+/* Styling for the filter form */
+#filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparency for contrast */
+    border-radius: 10px;
+}
+
+/* Label styling */
+#filter-form label {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* Input and select elements */
+#filter-form input, #filter-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #008d76; /* Neon cyan border for inputs */
+    background-color: #222831; /* Dark input background */
+    color: #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Filter button styling */
+.button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #008d76;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Full width on mobile */
+}
+
+.button:hover {
+    background-color: #005f60;
+}
+
+/* Table container styling */
+#results-table-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparency */
+    border-radius: 10px;
+}
+
+/* Table styling */
+#results-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#results-table th, #results-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+#results-table th {
+    background-color: #008d76;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/*
+#results-table td {
+    color: #e0e0e0;
+}
+*/
+
+/* Collapsible details styling */
+.details-box .details-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Expanded state */
+.details-box .details-content.expanded {
+    max-height: 900px;
+}
+
+/* Button inside details */
+.expand-collapse {
+    background-color: #008d76;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;    
+}
+
+/* Styling for the day of the week under the date */
+.day-of-week {
+    font-size: 0.9rem;
+    color: #ccc; /* Make it slightly lighter than the main date */
+    display: block; /* Display on its own line */
+    margin-top: 5px;
+}
+
+/* Submit button styling */
+#filter-button {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 2rem;
+    padding: 20px;
+    cursor: pointer;
+    border: 2px solid #008d76; /* Border color matching the emotion buttons */
+    border-radius: 5px;
+    background-color: transparent; /* No background initially */
+    color: #008d76; /* Text color matching the border */
+    width: 100%;
+    text-transform: uppercase; /* Uppercase text for submit button */
+    transition: color 0.3s, text-shadow 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
+}
+
+/* Hover effect for submit button */
+#filter-button:hover {
+    /* Subtle inner glow effect for the button */
+    box-shadow: inset 0 0 15px rgba(0, 100, 100, 0.9); /* Inner glow effect */
+    color: #008d76; /* Text color remains consistent */
+}
+
+/* Emotion colors */
+.happy {
+    color: #4cff4c; /* Neon green */
+}
+
+.sad {
+    color: #4c4cff; /* Neon blue */
+}
+
+.anger {
+    color: #ff4c4c; /* Neon red */
+}
+
+.fear {
+    color: #ffa500; /* Neon orange */
+}
+
+.embarrassed {
+    color: #c900f1; /* Neon purple */
+}
+
+.bored {
+    color: #e6e6e6; /* Light gray */
+}
+
+.worried {
+    color: #3e57c9; /* Darker blue */
+}
+
+.surprised {
+    color: #f827ff; /* Neon pink */
+}
+
+.calm {
+    color: #b100c9; /* Purple */
+}
+
+.confused {
+    color: #ff5d2b; /* Orange red */
+}
