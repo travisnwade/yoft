@@ -195,3 +195,12 @@ body {
 .confused {
     color: #ff5d2b; /* Orange red */
 }
+
+/* Group header styling */
+.group-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    color: #fff;
+    text-align: left;
+}
