@@ -1,8 +1,6 @@
-# Feeling Tracker
+# YOFT (Yet O-nother Feeling Tracker) - Self-Hosted Opensource Emotion and Mood Journaling App
 
 ![Feeling Tracker Screenshot](repo-srcs/yoft_screenshot.jpg)
-
-## YOFT (Yet O-nother Feeling Tracker)
 
 The entire purpose of this project is to self host your own emotional well-being web application for simple journaling in order to be able to reflect on at a later time. This can be for your own introspection or for recalling events, understanding your own emotional patterns and triggers, etc.  Can be used as a tool for your own healing journey to better understand what your triggers are, when things are going well or even potentially where your anxiety comes from.
 
