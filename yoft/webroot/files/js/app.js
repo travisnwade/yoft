@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Create collapsible/expandable box for details
                     const detailsBox = document.createElement('div');
                     detailsBox.classList.add('details-box');
-                    detailsBox.innerHTML = `<button class="expand-collapse">Show/Hide Details</button><div class="details-content">${entry.text}</div>`;
+                    detailsBox.innerHTML = `<button class="expand-collapse">Expand</button><div class="details-content">${entry.text}</div>`;
                     
                     // Append the cells to the row
                     detailsCell.appendChild(detailsBox);
