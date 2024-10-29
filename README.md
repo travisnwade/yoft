@@ -222,7 +222,7 @@ If no argument is passed, then `./yoft.sh` or `yoft` will simply show the help t
 
 ### Step 2: Install the webserver and needed dependancy packages
 
-Install the necessary packages and configure the webserver with `--install` once `/opt/yoft/` has been populated with the ``--download-only` argument:
+Install the necessary packages and configure the webserver with `--install` once `/opt/yoft/` has been populated with the `--download-only` argument:
 
 **Script**
 ```bash
@@ -280,7 +280,6 @@ You'll need to do this in order to use your own domain as well as for Certbot to
 
 ```bash
 sudo nano /etc/nginx/sites-available/yoft
-
 ```
 
 Update this block to your domain (change `localhost` to your domain):
