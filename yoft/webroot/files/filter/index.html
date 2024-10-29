@@ -3,11 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emotion Log Filter</title>
+    <title>YOFT Emotion Log Filter</title>
+
+    <!-- Assets and Styles -->
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Poppins font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
-    <link rel="stylesheet" href="../css/filters.css"> <!-- Dedicated CSS for styling filters and table -->
+    <!-- Main stylesheet for the site -->
+    <link rel="stylesheet" href="../css/default.css">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="canonical" href="">
+
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Favicon -->
+    <!-- Favicon settings, recommended to use a tool like realfavicongenerator.net -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="../images/icons/favicon.ico">
+
 </head>
 <body>
+
+    <!-- Menu Button -->
+    <div id="menu-button" class="menu-button">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+    
+    <div id="slide-in-menu" class="slide-in-menu">
+        <ul>
+            <li class="menu-item item1">
+                <a href="/">Homepage</a>
+            </li>            
+            <li class="menu-item item2">
+                <a href="/filter">Search and Filter Submissions</a>
+            </li>            
+            <li class="menu-item item3">
+                <a href="php/submissions.php?action=export" download>Export Submissions</a>
+            </li>
+        </ul>
+    </div>
+
     <h1 class="main-heading">Filter Emotion Logs</h1>
 
     <!-- Filter Form -->
@@ -100,6 +152,6 @@
         </table>
     </div>
 
-    <script src="../js/filter.js" defer></script> <!-- Filter logic in a separate JavaScript file -->
+    <script src="../js/app.js" defer></script> <!-- Filter logic in a separate JavaScript file -->
 </body>
 </html>

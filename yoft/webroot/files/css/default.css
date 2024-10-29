@@ -1,7 +1,7 @@
 /* Overall body styling */
 body {
     font-family: 'Poppins', Arial, sans-serif;
-    margin: 20px;
+    margin: 50px 20px 50px 20px;
     text-align: center;
     background: url('../media/feeling-bg.jpg') no-repeat center center fixed; /* Background image with fixed positioning */
     background-size: cover; /* Ensure the image covers the entire screen */
@@ -39,73 +39,73 @@ a:hover {
     position: fixed;
     top: 20px;
     left: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: #00adb5;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     z-index: 1000;
-    transition: background-color 0.3s;
 }
 
-.menu-button i {
-    color: #000;
-    font-size: 24px;
+/* Slide-In Menu */
+/* Hidden off-screen initially */
+.slide-in-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: auto;
+    max-width: 300px;
+    background-color: black;
+    color: #00adb5;
+    padding: 50px 30px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    text-align: left; /* Left-align menu items */
+}
+
+/* Opened Slide-In Menu */
+.slide-in-menu.open {
+    transform: translateX(0); /* Slide in from the left */
+}
+
+.slide-in-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.slide-in-menu .menu-item {
+    font-size: 1.5rem; /* Responsive base font size */
+    margin: 15px 0;
+}
+
+.slide-in-menu .menu-item a {
+    color: inherit;
+    text-decoration: none;
     transition: color 0.3s;
 }
 
-.menu-button:hover {
-    background-color: #00595d;
+.slide-in-menu .menu-item a:hover {
+    color: #fff;
+}
+
+.menu-button i {
+    color: #00adb5;
+    font-size: 24px;
+    transition: color 0.3s;
 }
 
 .menu-button:hover i {
     color: #fff;
 }
 
-/* Menu Modal Styling */
-.menu-modal {
-    position: fixed;
-    top: 20px;
-    left: 80px;
-    background-color: rgba(0, 0, 0, 0.9); /* Updated opacity to 90% */
-    border-radius: 10px;
-    display: none;
-    z-index: 999;
-    padding: 30px; /* Updated padding for desktop */
-    width: auto;
-    height: auto;
-    max-width: 300px;
-}
-
-.menu-modal ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu-modal .menu-item {
-    font-size: 1.5rem; /* Updated font size for desktop */
-    color: #00adb5;
-    margin: 10px 0;
-    cursor: pointer;
-    text-align: left;
-}
-
-.menu-modal .menu-item:hover {
-    color: #fff;
-}
-
 /* Responsive Menu Button for Mobile */
 @media (max-width: 700px) {
     .menu-button {
-        top: auto;
-        left: auto;
-        right: 15px;
-        bottom: 15px;
-        width: 45px;
+        /* top: 15px; */
+        left: 15px;
+        /* width: 45px; */
         height: 45px;
     }
 
@@ -113,18 +113,15 @@ a:hover {
         font-size: 20px;
     }
 
-    .menu-modal {
-        top: auto;
-        left: auto;
-        right: 70px;
-        bottom: 70px;
-        padding: 25px; /* Updated padding for mobile */
-        max-width: calc(100vw - 30px);
-        max-height: calc(100vh - 30px);
+    .slide-in-menu {
+        width: 100%;
+        padding-top: 70px; /* Adds space between button and menu items */
     }
 
-    .menu-modal .menu-item {
-        font-size: 1.5rem; /* Font size remains consistent on mobile */
+    .slide-in-menu .menu-item {
+        font-size: 2rem;
+        margin: 20px 0; /* Add space between items */
+        padding-left: 15px; /* Adjust padding as needed */
     }
 }
 
@@ -178,28 +175,6 @@ textarea {
     transition: background-color 0.3s, border-color 0.3s; /* Smooth transitions for color changes */
 }
 
-/* Submit button styling */
-#submit-button {
-    font-family: 'Poppins', Arial, sans-serif;
-    font-size: 2rem;
-    padding: 20px;
-    cursor: pointer;
-    border: 2px solid #00adb5; /* Border color matching the emotion buttons */
-    border-radius: 5px;
-    background-color: transparent; /* No background initially */
-    color: #00adb5; /* Text color matching the border */
-    width: 100%;
-    text-transform: uppercase; /* Uppercase text for submit button */
-    transition: color 0.3s, text-shadow 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
-}
-
-/* Hover effect for submit button */
-#submit-button:hover {
-    /* Subtle inner glow effect for the button */
-    box-shadow: inset 0 0 15px rgba(0, 173, 181, 0.8); /* Inner glow effect */
-    color: #00adb5; /* Text color remains consistent */
-}
-
 /************************************/
 /*                                  */
 /****** EMOTION BUTTON SECTION ******/
@@ -211,40 +186,80 @@ button.anger {
     border-color: #ff4c4c; /* Neon Red border */
 }
 
+.anger {
+    color: #ff4c4c;
+}
+
 button.fear {
     border-color: #ffa500; /* Neon Orange border */
+}
+
+.fear {
+    color: #ffa500;
 }
 
 button.sad {
     border-color: #4c4cff; /* Neon Blue border */
 }
 
+.sad {
+    color: #4c4cff;
+}
+
 button.happy {
     border-color: #4cff4c; /* Neon Green border */
+}
+
+.happy {
+    color: #4cff4c;
 }
 
 button.embarassed {
     border-color: #c900f1; /* Neon Purple border */
 }
 
+.embarassed {
+    color: #c900f1;
+}
+
 button.bored {
     border-color: #e6e6e6; /* Gray border */
+}
+
+.bored {
+    color: #e6e6e6;
 }
 
 button.worried {
     border-color: #3e57c9; /* Gray border */
 }
 
+.worried {
+    color: #3e57c9;
+}
+
 button.surprised {
     border-color: #f827ff; /* Gray border */
+}
+
+.surprised {
+    color: #f827ff;
 }
 
 button.calm {
     border-color: #b100c9; /* Gray border */
 }
 
+.calm {
+    color: #b100c9;
+}
+
 button.confused {
     border-color: #ff5d2b; /* Gray border */
+}
+
+.confused {
+    color: #ff5d2b;
 }
 
 /* Button background fills when selected */
@@ -473,4 +488,170 @@ button.confused.selected {
 * {
     scrollbar-width: thin;
     scrollbar-color: #00adb5 #1a1a2e; /* Thumb color and track color */
+}
+
+
+/* Main heading styling */
+.main-heading {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 2.5rem;
+    color: #00adb5;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+}
+
+/* Styling for the filter form */
+#filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); /* Glowing box shadow */
+}
+
+/*
+
+background: rgba(0, 0, 0, 0.7);  
+border-radius: 10px;
+box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);  
+position: relative;
+top: 20px;
+
+*/
+
+/* Label styling */
+#filter-form label {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+/* Input and select elements */
+#filter-form input, #filter-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #00adb5; /* Neon cyan border for inputs */
+    background-color: #222831; /* Dark input background */
+    color: #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Filter button styling */
+.button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #00adb5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Full width on mobile */
+}
+
+.button:hover {
+    background-color: #017b81;
+}
+
+/* Table container styling */
+#results-table-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); /* Glowing box shadow */
+}
+
+/* Table styling */
+#results-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#results-table th, #results-table td {
+    border: 1px solid #00adb5;
+    padding: 12px;
+    text-align: left;
+}
+
+#results-table th {
+    background-color: #00adb5;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Collapsible details styling */
+.details-box .details-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Expanded state */
+.details-box .details-content.expanded {
+    max-height: 900px;
+}
+
+/* Button inside details */
+.expand-collapse {
+    background-color: #00adb5;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    padding: 13px;
+    margin-bottom: 10px;    
+}
+
+/* Styling for the day of the week under the date */
+.day-of-week {
+    font-size: 0.9rem;
+    color: #ccc; /* Make it slightly lighter than the main date */
+    display: block; /* Display on its own line */
+    margin-top: 5px;
+}
+
+/* Submit button styling */
+#submit-button,
+#filter-button {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 2rem;
+    padding: 20px;
+    cursor: pointer;
+    border: 2px solid #00adb5; /* Border color matching the emotion buttons */
+    border-radius: 5px;
+    background-color: transparent; /* No background initially */
+    color: #00adb5; /* Text color matching the border */
+    width: 100%;
+    text-transform: uppercase; /* Uppercase text for submit button */
+    transition: color 0.3s, text-shadow 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
+}
+
+/* Hover effect for submit button */
+#submit-button:hover,
+#filter-button:hover {
+    /* Subtle inner glow effect for the button */
+    box-shadow: inset 0 0 15px rgba(0, 173, 181, 0.8); /* Inner glow effect */
+    color: #00adb5; /* Text color remains consistent */
+}
+
+/* Group header styling */
+.group-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    color: #fff;
+    text-align: left;
 }
