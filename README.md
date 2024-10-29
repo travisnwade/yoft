@@ -60,11 +60,21 @@ I needed an easy way to do this, I tried a few apps out there but they were eith
 At this time, I've only deployed and tested this project on Ubuntu 22.04 LTS. It should work on other Debian based distros but may need some adjustments. Of course the scripts and various installation methods would need to be modified to fit with other Linux flavors and of course, entirely different for Windows.
 
 ## Features
+### Homepage
+
 - **Emotion Buttons**: Select the emotion you're feeling at the time, and that emotion will be associated with the text input. The idea here is to get a better understanding of yourself and your patterns.
 - **Text Area**: 400 character limit, to force us to be brief and to-the-point on what was going on at the time. Also to keep the submission history fairly clean and organized.
 - **Submission History**: A dynamic section displays the history of submissions.
 - **Responsive Design**: The application should be fully functional and clear regardless of the device you're using to access it.
 - **Export**: There is a menu option to export submission history to a CSV for your records and further analysis.
+
+### Filter Page
+
+![Yoft Filter Form](repo-srcs/yoft_filter_form.jpg)
+
+- **Search**: Search, sort and view submissions by date, emotion, month, day of the week.
+- **Sort**: Sort results by newest to oldest or oldest to newest
+- **Group**: Group results by emotion or day of the week.
 
 ### Backend Features
 - **Setup Script**: The setup script used to install carries a lot of functionality such as refreshing the website code without modifying your submission history, backing up and restoring your submissions database. See [available script srguments](#available-script-arguments) section below.
@@ -131,11 +141,14 @@ The web files are organized as follows when deployed, located in `/var/www/html/
 /var/www/html/yoft/
 ├── css/
 │   └── default.css       # Main stylesheet for the application
+├── filter/
+│   └── index.html        # HTML for the /filter page
 ├── js/
-│   └── feeling.js        # JavaScript file for handling user interactions
+│   └── app.js            # JavaScript file for handling user interactions
 ├── media/
 │   └── feeling-bg.jpg    # Background image for the site
 ├── php/
+│   └── filters_data.php  # PHP file for handling the filter page database queries.
 │   └── submissions.php   # PHP file for handling SQLite database entries.
 │   └── submissions.db    # The database file itself once you have submissions.
 ├── images/
