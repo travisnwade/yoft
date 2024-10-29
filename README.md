@@ -1,6 +1,6 @@
 # YOFT (Yet O-nother Feeling Tracker) - Self-Hosted Opensource Emotion and Mood Journaling App
 
-![Feeling Tracker Screenshot](repo-srcs/yoft_screenshot.jpg)
+![Feeling Tracker Screenshot](repo-srcs/yoft_screenshot_v2.jpg)
 
 The entire purpose of this project is to self host your own emotional well-being web application for simple journaling in order to be able to reflect on at a later time. This can be for your own introspection or for recalling events, understanding your own emotional patterns and triggers, etc.  Can be used as a tool for your own healing journey to better understand what your triggers are, when things are going well or even potentially where your anxiety comes from.
 
@@ -77,7 +77,7 @@ This is meant to be a very stupid simple way to track emotions and journal how y
 
 This is a simple text box. There's a 400 character limit designed to keep us brief and concise. This can be what was going on, what was going on, how your felt, etc. Whatever you want to put here to associate with how you're feeling.
 
-![Journal Textbox Screenshot](repo-srcs/yoft_textbox.jpg)
+![Journal Textbox Screenshot](repo-srcs/yoft_textbox_v2.jpg)
 
 ### The Emotions
 
@@ -104,7 +104,7 @@ Here's how the emotion buttons behave when you hover over them on desktop:
 
 If you want to further analyze your emotion trends or to simply just have for your records, you can export your submission history based on the current content within the `submissions.db` database. This is done through the menu. Simply open the menu, and select "Export Submissions". This will ask you to download the submissions in `CSV` format:
 
-![Export Feature](repo-srcs/yoft_export.jpg)
+![Export Feature](repo-srcs/yoft_export_v2.jpg)
 
 ## Packages and Technologies Used
 
