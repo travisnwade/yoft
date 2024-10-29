@@ -13,6 +13,8 @@ Feel free to clone this, make it your own, etc.
 - [Overview](#overview)
 - [Supported OS's](#tested-operating-systems)
 - [Features](#features)
+  - [Homepage](#homepage)
+  - [Filter Page](#filter-page)
   - [Backend Features](#backend-features)
 - [Usage](#usage)
   - [Journaling](#the-journal)
